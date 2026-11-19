@@ -1,0 +1,25 @@
+# This is an example mods.toml file. It contains the data relating to the loading mods.
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+
+[[mods]]
+modId="languagereload"
+version="1.0.1"
+displayName="LanguageReload"
+authors="HiedaCamellia"
+description='''A client-side mod that reduces language switching load times and adds extra language options.'''
+
+[[dependencies.languagereload]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.languagereload]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
