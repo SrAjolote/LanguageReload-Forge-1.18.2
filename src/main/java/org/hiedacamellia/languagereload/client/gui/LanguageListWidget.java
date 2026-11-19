@@ -1,6 +1,7 @@
 package org.hiedacamellia.languagereload.client.gui;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
 import org.hiedacamellia.languagereload.client.gui.LanguageEntry;
 import org.hiedacamellia.languagereload.core.access.ILanguageOptionsScreen;
 import org.hiedacamellia.languagereload.core.mixin.EntryListWidgetAccessor;
@@ -29,10 +31,10 @@ extends ObjectSelectionList<LanguageEntry> {
     }
 
     @Override
-    protected void renderDecorations(PoseStack poseStack, int x, int y) {
-        MutableComponent headerText = this.title.copy().withStyle(new ChatFormatting[]{ChatFormatting.UNDERLINE, ChatFormatting.BOLD});
-        int headerPosX = x + this.width / 2 - this.minecraft.font.width((FormattedText)headerText) / 2;
-        int headerPosY = Math.min(this.y0 + 3, y);
+    protected void renderHeader(PoseStack poseStack, int x, int y, Tesselator tesselator) {
+        MutableComponent headerText = new TextComponent("").append(this.title).withStyle(ChatFormatting.UNDERLINE, ChatFormatting.BOLD);
+        float headerPosX = (float)(x + this.width / 2 - this.minecraft.font.width((FormattedText)headerText) / 2);
+        float headerPosY = (float)Math.min(this.y0 + 3, y);
         this.minecraft.font.draw(poseStack, (Component)headerText, headerPosX, headerPosY, 0xFFFFFF);
     }
 
